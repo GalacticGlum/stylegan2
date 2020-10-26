@@ -26,6 +26,7 @@ verbose = True # Print status messages to stdout.
 
 compiler_bindir_search_path = [
     'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.14.26428/bin/Hostx64/x64',
+    'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.16.27023/bin/Hostx64/x64',
     'C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64',
     'C:/Program Files (x86)/Microsoft Visual Studio 14.0/vc/bin',
 ]
@@ -124,7 +125,7 @@ def get_plugin(cuda_file):
             compile_opts += '"%s"' % os.path.join(tf.sysconfig.get_lib(), 'python', '_pywrap_tensorflow_internal.lib')
         elif os.name == 'posix':
             compile_opts += '"%s"' % os.path.join(tf.sysconfig.get_lib(), 'python', '_pywrap_tensorflow_internal.so')
-            compile_opts += ' --compiler-options \'-fPIC -D_GLIBCXX_USE_CXX11_ABI=0\''
+            compile_opts += ' --compiler-options \'-fPIC -D_GLIBCXX_USE_CXX11_ABI=1\''
         else:
             assert False # not Windows or Linux, w00t?
         compile_opts += ' --gpu-architecture=%s' % _get_cuda_gpu_arch_string()
